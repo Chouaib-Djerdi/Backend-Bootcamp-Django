@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ event.title }}</h5>
         <p class="card-text">{{ event.description }}</p>
-        <a href="{% url 'event-detail' event.id %}" class="btn btn-primary"
+        <a href="{% url 'events:event-detail' event.id %}" class="btn btn-primary"
           >View Details</a
         >
       </div>
