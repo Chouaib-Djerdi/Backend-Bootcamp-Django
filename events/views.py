@@ -52,3 +52,9 @@ def update_event(request, pk):
         return redirect(reverse("events:event-listing"))
 
     return render(request, "update_event.html", context={"form": form})
+
+@login_required
+def delete_event(request, pk):
+    event = Event.objects.get(id=pk)
+    event.delete()
+    return redirect(reverse("events:event-listing"))

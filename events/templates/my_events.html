@@ -24,7 +24,7 @@
             <td>
             <a href="{% url 'events:event-detail' event.id %}" class="btn btn-primary">View</a>
             <a href="{% url 'events:update-event' event.id %}" class="btn btn-warning">Update</a>
-            {% comment %} <a href="{% url 'events:event-delete' event.id %}" class="btn btn-danger">Delete</a> {% endcomment %}
+            <a href="{% url 'events:delete-event' event.id %}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         {% endfor %}
