@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <form method="POST">
+    <h2>Update Event</h2>
+    {% csrf_token %}
+    {% for field in form %}
+        {{field.label}} : {{field}}
+        <br/>
+    {% endfor %}
+    <input type="submit" class="btn btn-outline-success" value="Update Event" />
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <h2>My Events</h2>
+    {% if events %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Max Seats</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.date|date:"Y-m-d" }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.max_seats }}</td>
+            <td>
+            <a href="{% url 'events:event-detail' event.id %}" class="btn btn-primary">View</a>
+            <a href="{% url 'events:update-event' event.id %}" class="btn btn-warning">Update</a>
+            {% comment %} <a href="{% url 'events:event-delete' event.id %}" class="btn btn-danger">Delete</a> {% endcomment %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No Registered Events by You !</p>
+    {% endif %}
+</div>
+
+{% endblock content %}
+
+
+
