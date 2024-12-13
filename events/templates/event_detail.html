@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Events - Eventify{% endblock %} 
+{% extends "base.html" %} {% block title %}Details - Eventify{% endblock %} 
 {% block content %}
 <div class="row">
   <h2>Event Details</h2>
@@ -10,9 +10,15 @@
         <p class="card-text">
           <strong>Starts:</strong> {{ event.date|date:"Y-m-d" }} <br />
           <strong>Location:</strong> {{ event.location }} <br/>
-          <strong>Max Seats:</strong> {{ event.max_seats }}
+          <strong>Max Seats:</strong> {{ event.max_seats }} <br/>
+          <strong>Created by:</strong> {{ event.organizer.username }}
         </p>
         <a href="/" class="btn btn-primary">Back to Events</a>
+        {% if user in event.attendees.all %}
+          <a href="{% url 'events:unattend-event' event.id %}" class="btn btn-danger">Unattend</a>
+        {% else %}
+          <a href="{% url "events:attend-event" event.id %}" class="btn btn-warning">Attend</a>
+        {% endif %}
       </div>
     </div>
   </div>

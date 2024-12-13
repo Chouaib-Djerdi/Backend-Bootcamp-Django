@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h2>Attended Events</h2>
+    {% if events %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.date|date:"Y-m-d" }}</td>
+            <td>{{ event.location }}</td>
+            <td>
+                <a href="{% url 'events:event-detail' event.id %}" class="btn btn-primary">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You haven't registered for any event yet !</p>
+    {% endif %}
+
+{% endblock content %}
+
+
+

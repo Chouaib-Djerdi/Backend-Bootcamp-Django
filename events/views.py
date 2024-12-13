@@ -53,8 +53,28 @@ def update_event(request, pk):
 
     return render(request, "update_event.html", context={"form": form})
 
+
 @login_required
 def delete_event(request, pk):
     event = Event.objects.get(id=pk)
     event.delete()
     return redirect(reverse("events:event-listing"))
+
+
+@login_required
+def attend_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.attendees.add(request.user)
+    return redirect(reverse("events:event-detail", args=[event_id]))
+
+
+@login_required
+def unattend_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.attendees.remove(request.user)
+    return redirect(reverse("events:event-detail", args=[event_id]))
+
+@login_required
+def attended_events(request):
+    events = Event.objects.filter(attendees=request.user)
+    return render(request, "attended_events.html", context={"events": events})
