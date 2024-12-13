@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Add the events app to the list of installed apps
     "events",
     "users",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
